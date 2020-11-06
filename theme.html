@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="./assets/img/icons/favicon.ico" />
+    <title>Theme for NIMS</title>
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/special/icofont/icofont.min.css">
+    <link rel="stylesheet" href="./assets/css/nav.css">
+
+    <script src="assets/js/jQuery-3.5.1.min.js"></script>
+   
+    <style>
+        
+        .grid-container {
+            display: grid;
+            grid-gap: 10px;
+              
+        }
+
+        .grid1 {
+            background: slategray;
+        }
+
+        .item1 {
+            grid-column-start: 1;
+            grid-column-end: 2;
+            grid-row-start: 1;
+            grid-row-end: 2;
+
+        }
+
+        .item2 {
+            grid-column-start: 2;
+            grid-column-end: 3;
+            grid-row-start: 1;
+            grid-row-end: 2;
+
+        }
+
+        .item3 {
+            grid-column-start: 3;
+            grid-column-end: 4;
+            grid-row-start: 1;
+            grid-row-end: 2;
+
+        }
+
+        .item4 {
+            grid-column-start: 4;
+            grid-column-end: 5;
+            grid-row-start: 1;
+            grid-row-end: 5;
+        }
+
+        .item5 {
+            grid-column-start: 1;
+            grid-column-end: 4;
+            grid-row-start: 2;
+            grid-row-end: 5;
+        }
+
+        .max-temp-grid {
+            grid-column-start: 1;
+            grid-column-end: 2;
+            grid-row-start: 1;
+            grid-row-end: 2;
+        }
+
+        .min-temp-grid {
+            grid-column-start: 2;
+            grid-column-end: 3;
+            grid-row-start: 1;
+            grid-row-end: 2;
+        }
+
+        .grass-min-temp-grid {
+            grid-column-start: 3;
+            grid-column-end: 4;
+            grid-row-start: 1;
+            grid-row-end: 2;
+        }
+
+         /*STyling from here... Copy back to nav.css later...*/
+         .navigation {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            min-height: 8vh;
+            background: #1f6c70;
+            
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: row;
+            color: whitesmoke;
+            letter-spacing: 5px;
+            font-size: 30px;
+            justify-content: center;
+            align-items: center;
+            font-weight: 700;
+        }
+
+        .logo img {
+            width: 35px;
+            margin-right: 5px;
+
+        }
+
+        .logo p {
+            font-weight: 200; 
+            
+        }
+
+        .nav-links {
+            display: flex;
+            background-color: transparent;
+            justify-content: space-between;
+            width: 43%;
+            list-style: none;
+            margin-top: auto;
+            margin-bottom: auto;
+            z-index: 400;
+        }
+
+        .nav-links li {
+            cursor: pointer;
+            padding: 15px;
+            transition: all 0.5s ease-in;
+            
+        }
+
+        .nav-links li a {
+            color: whitesmoke;
+            text-decoration: none;
+            letter-spacing: 3px;
+            font-weight: 400;
+            font-size: 14px;
+            transition: all 0.5s ease-in;
+        }
+
+        .nav-links li:hover, .nav-links li a:hover {
+            font-weight: 600;
+            background-color: #6bb5b9;
+            color: rgb(55, 101, 116);
+        }
+
+        .sub-menu ul{
+            display: none;
+        }
+
+        @media screen and (min-width: 990px) {
+        
+            .sub-menu:hover ul{
+                display: flex;
+                position: absolute;
+                z-index: 500;
+                justify-content: last baseline;
+                flex-direction: column;
+                background-color: #1f6c70;
+                list-style: none; 
+                width: 180px;
+                
+            } 
+        }
+
+
+        .burger {
+            display: none; 
+            cursor: pointer;
+        }
+
+        .burger div{
+            width: 25px;
+            height: 3px;
+            background-color: whitesmoke;
+            margin: 5px;
+            transition: all 0.6s ease-in-out;
+        
+        }
+
+        @media screen and (max-width: 990px){
+            body {
+                overflow-x: hidden;
+            }
+
+            .nav-links{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                position: absolute;
+                right: 0px;
+                top: 8vh;
+                background: #1f6c70;
+                width: 35%;
+                transform: translateX(100%);
+                transition: all 0.5s ease-in;
+                z-index: 400;
+            }
+            
+            .nav-links li {
+                opacity: 0;
+            }
+
+            .sub-menu ul {
+                display: flex;   
+                flex-direction: column;
+                list-style: none;     
+            }
+        
+            .burger {
+                display: block;
+            }
+
+            .navigation {
+                height: 8vh;
+            }
+
+            .user-data {
+                display: none;
+            }
+        }
+
+        .nav-active {
+            transform: translateX(0%);
+        }
+
+        @keyframes navLinkfade {
+            from{
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to{
+                opacity: 1;
+                transform: translateX(0px);
+            }
+        }
+
+        .toggle .line1 {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        .toggle .line2 {
+            opacity: 0;
+        }
+        .toggle .line3 {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+
+    </style>
+</head>
+<body>
+    <section class="navigation">
+        <div class="logo">
+            <img src="./assets/img/png/logo.png">
+            <h4>NIMS</h4><p>&reg;</p>
+        </div>       
+        <ul class="nav-links">
+            <li class="sub-menu"><a href="#">Opmet</a>
+                <ul>
+                    <li><a href="#">METAR / SPECI</a></li>
+                    <li><a href="#">Temp & Pressure Parameters</a></li>
+                    <li><a href="#">SYNOP (AAXX)</a></li>
+                    <li><a href="#">AAXX Collectives</a></li>
+                    <li><a href="#">Present Wx Remarks</a></li>
+                </ul>
+            
+            </li>
+            <li class="sub-menu"><a href="#">Forecasting</a>
+                <ul>
+                    <li><a href="#">TAF</a></li>
+                    <li><a href="#">TAF Collectives</a></li>                    
+                    <li><a href="#">TAF Validation</a></li>
+                </ul>
+            </li>
+            <li class="sub-menu"><a href="#">Reports</a>
+                <ul>
+                    <li><a href="#">Met Returns</a></li>
+                    <li><a href="#">FM 100</a></li>                    
+                    <li><a href="#">FM 135</a></li>
+                    <li><a href="#">FM 516</a></li>                    
+                    <li><a href="#">Dekad Data</a></li>
+                    <li><a href="#">Parameters Validation</a></li>                    
+                    <li><a href="#">Wx Logbook</a></li>
+                    <li><a href="#">Monthly Wx Summary</a></li>                    
+                    <li><a href="#">MOC/Climat</a></li>
+                </ul>  
+            </li>
+            <li class="sub-menu"><a href="#">Messaging</a>            
+                <ul>
+                    <li><a href="#">Emails / SMS</a></li>
+                </ul>
+            </li>
+            <li class="sub-menu"><a href="#">Administration</a>
+                <ul>
+                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="#">Print Summaries</a></li>
+                    <li><a href="#">Users</a></li>
+                    <li><a href="#">Stakeholders Emails</a></li>
+                    <li><a href="#">General Emails</a></li>
+                    
+                </ul>
+            </li>             
+
+        </ul>
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+        
+    </section>
+    <div class="user-data">
+        <p>Logged-In: <span class="user">Developer</span></p>
+    </div>
+
+    <main>
+    <section class="section-title">
+        <h4><i class="icofont icofont-cloud"></i>METAR / SPECI - OBSERVATIONS DATA ENTRY</h4>
+    </section>
+    <section class="px-4 container-fluid">
+        <div class="form-row">
+            <div class="col-md-9 mt-2 form-inline">
+                <div class="form-inline input-group-sm">
+                    <label for="cbxStation">Station</label>
+                    <select class="custom-control custom-select" id="cbxStation" name="cbxStation" style="width: 250px">
+                        <option value="IKEJA">IKEJA</option>
+                        <option value="ABUJA">ABUJA</option>
+                        <option value="PORT-HARCOURT">PORT-HARCOURT</option>
+
+                    </select>
+                </div>
+                 
+                <div class="form-inline input-group-sm">
+                    <label class="label-input m-2">DNMM</label>
+                    <label class="label-input">65201</label>
+                </div>
+                <button class="btn btn-outline-standard btn-sm ml-5 px-4" type="button" id="btnLinkDisplay">Display Latest Entry</button>
+            </div>
+                        
+        </div>
+        
+        <div class="form-row">
+            <div class="col-md-8 form-inline">
+                <div class="form-inline input-group-sm">
+                    <label for="cbxTime">Time of Observation</label>
+                    <input class="form-control" type="time" id="cbxTime" name="cbxTime" style="width:155px">
+                    <button class="btn btn-standard btn-sm px-4" style="margin-left: 90px" type="button" id="btnDisplay" name="btnDisplay">Display >></button>
+                </div>
+                <div class="form-inline input-group-sm ml-3">
+                    <label for="cbxDate ml-4">Date</label>
+                    <input type="date" class="form-control" id="cbxDate" name="cbxDate">
+                </div>
+                <div class="form-inline input-group-sm ml-3">
+                    <label for="cbxMessageType ml-4">Message Type</label>
+                    <select class="custom-control custom-select" id="cbxMessageType" name="cbxMessageType">
+                        <option value="METAR">METAR</option>
+                        <option value="SPECI">SPECI</option>
+                    </select>
+                </div>                
+            </div>
+            <div class="col-md-1" style="margin-top: -40px">
+                <img class="img-fluid" src="./assets/img/svg/weather.svg">
+            </div>
+        </div>
+        <div class="form-row">
+            <fieldset class="col-lg-3 align-self-start">
+                <legend>TEMPERATURES</legend>
+                <div class="d-flex justify-content-between">
+                    <div class="form-inline input-group-sm">
+                        <label for="txtDryBulb" class="ml-2">Dry Bulb</label>
+                        <input type="number" class="form-control text-right" id="txtDryBulb" name="txtDryBulb" placeholder="0.0" style="width: 80px;">
+                        <label class="error-link">ºC</label>
+                    </div>
+                    <div class="form-inline input-group-sm">
+                        <label for="txtDewPoint">Dew Point</label>
+                        <label class="label-input-align-right" id="txtDewPoint" name="txtDewPoint" placeholder="0.0" style="width: 80px;">0.0</label>
+                        <label class="error-link mr-3">ºC</label>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between mt-2">
+                    <div class="form-inline input-group-sm">
+                        <label for="txtWetBulb" class="ml-1">Wet Bulb</label>
+                        <input type="number" class="form-control text-right" id="txtWetBulb" name="txtWetBulb" placeholder="0.0" style="width: 80px;">
+                        <label class="error-link">ºC</label>
+                    </div>
+                    <div class="form-inline input-group-sm">
+                        <label for="txtRH">RH</label>
+                        <label class="label-input-align-right" id="txtRH" name="txtRH" placeholder="0.0" style="width: 80px;">0.0</label>
+                        <label class="error-link" style="margin-right: 22px">%</label>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end mt-2">
+                    <div style="flex: 1">
+                         
+                    </div>
+                    <div style="flex: 1;" class="form-inline input-group-sm">
+                        <label for="txtVP" style="margin-left:45px;">VP</label>
+                        <label class="label-input-align-right" id="txtVP" name="txtVP" placeholder="0.0" style="width: 80px;">0.0</label>
+                        <label class="error-link">hPa</label>
+                    </div>
+                </div>
+                <hr class="mx-2">
+                 <div class="form-inline input-group-sm">
+                    <label for="txtSolar" class="ml-2">Solarimeter Reading</label>
+                    <input type="text" class="form-control text-right" id="txtSolar" name="txtSolar" style="width: 80px" placeholder="0.0">
+                    <label class="error-link">W/m²</label>
+                </div>
+                <fieldset class="col-md-12">
+                    <legend>Pressure Values (hPa)</legend>
+                        <div class="form-row d-flex justify-content-between">                        
+                            <div class="input-group-sm">
+                                <label for="txtSLP">SLP</label>
+                                <input type="number" class="form-control text-right" id="txtSLP" name="txtSLP" style="width: 90px" placeholder="0000.0">
+
+                            </div>
+                            <div class="input-group-sm">
+                                <label for="txtNewQFE">QFE</label>
+                                <input type="number" class="form-control text-right" id="txtNewQFE" name="txtNewQFE" style="width: 90px" placeholder="0000.0">  
+
+                            </div>
+                            <div class="input-group-sm">
+                                <label for="txtNewQNH">QNH</label>
+                                <input type="number" class="form-control text-right" id="txtNewQNH" name="txtNewQNH" style="width: 90px" placeholder="0000.0">
+
+                            </div>
+                        </div>
+                </fieldset>                
+                
+            </fieldset>
+             
+            <fieldset class="col-lg-7 ml-3 px-2">
+                <legend>SYNOPTIC HOURS COLLECTIVES</legend>
+                <div class="grid-container ml-1">
+                    <div class="item1 grid ml-2">
+                        <label class="label-title">Cup Counter (KM)</label>
+                        <div class="form-row mt-2">
+                            <div class="input-group-sm form-inline">
+                                <label for="txtCupReading">Reading</label>
+                                <input type="number" id="txtCupReading" name="txtCupReading" class="form-control text-right" style="width: 110px" placeholder="0000.00">
+                            </div>
+                        </div>
+                        <div class="form-row mt-2">
+                            <div class="input-group-sm form-inline">
+                                <label for="txtCupRun" style="margin-left: 29px">Run</label>
+                                <input type="number" id="txtCupRun" name="txtCupRun" class="form-control text-right" style="width: 110px" placeholder="0000.00">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item2 grid">
+                        <label class="label-title">Piche Evaporimeter</label>
+                        <div class="form-row mt-2">
+                            <div class="input-group-sm form-inline">
+                                <label for="txtPichePreFilled">Pre-Filled</label>
+                                <input type="number" id="txtPichePreFilled" name="txtPichePreFilled" class="form-control text-right" style="width: 80px" placeholder="0.0">
+                            </div>
+                        </div>
+                        <div class="form-row mt-2">
+                            <div class="input-group-sm form-inline">
+                                <label for="txtPicheFilled" style="margin-left: 29px">Filled</label>
+                                <input type="number" id="txtPicheFilled" name="txtPicheFilled" class="form-control text-right" style="width: 80px" placeholder="0.0">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item3 grid">
+                        <label class="label-title">Rainfall etc</label>
+                        <div class="form-row mt-2">
+                            <div class="input-group-sm form-inline">
+                                <label for="txtRainAmt" style="margin-left: 35px">Rainfall</label>
+                                <input type="text" id="txtRainAmt" name="txtRainAmt" class="form-control text-right" style="width: 80px" placeholder="0.0">
+                                <label class="error-link">mm</label>
+                            </div>
+                        </div>
+                        <div class="form-row mt-2">
+                            <div class="input-group-sm form-inline">
+                                <label for="txtSunshineHours">Sunshine Hrs</label>
+                                <input type="number" id="txtSunshineHours" name="txtSunshineHours" class="form-control text-right" style="width: 80px" placeholder="0.0">
+                            </div>
+                        </div>
+                        <div class="form-row mt-2">
+                            <div class="input-group-sm form-inline">
+                                <label for="txtClassAPan" style="margin-left: 8px">Class A Pan</label>
+                                <input type="number" id="txtClassAPan" name="txtClassAPan" class="form-control text-right" style="width: 80px" placeholder="0.0">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item4 grid flex-wrap">
+                        <label class="label-title mb-2">Soil Temperatures (ºC)</label>                        
+                        <div class="input-group-sm form-inline">
+                            <label for="txt5cm" style="margin-left: 34px">5cm</label>
+                            <input type="number" id="txt5cm" name="txt5cm" class="form-control text-right" style="width: 80px" placeholder="0.0">
+                            <label class="error-link">ºC</label>
+                        </div>
+                        <div class="input-group-sm form-inline mt-2">
+                            <label for="txt5cm" style="margin-left: 30px">10cm</label>
+                            <input type="number" id="txt5cm" name="txt5cm" class="form-control text-right" style="width: 80px" placeholder="0.0">
+                            <label class="error-link">ºC</label>
+                        </div>
+                        <div class="input-group-sm form-inline mt-2">
+                            <label for="txt5cm" style="margin-left: 27px">20cm</label>
+                            <input type="number" id="txt5cm" name="txt5cm" class="form-control text-right" style="width: 80px" placeholder="0.0">
+                            <label class="error-link">ºC</label>
+                        </div>
+                        <div class="input-group-sm form-inline mt-2">
+                            <label for="txt5cm" style="margin-left: 27px">30cm</label>
+                            <input type="number" id="txt5cm" name="txt5cm" class="form-control text-right" style="width: 80px" placeholder="0.0">
+                            <label class="error-link">ºC</label>
+                        </div>
+                        <div class="input-group-sm form-inline mt-2">
+                            <label for="txt5cm" style="margin-left: 27px">50cm</label>
+                            <input type="number" id="txt5cm" name="txt5cm" class="form-control text-right" style="width: 80px" placeholder="0.0">
+                            <label class="error-link">ºC</label>
+                        </div>
+                        <div class="input-group-sm form-inline mt-2">
+                            <label for="txt5cm" style="margin-left: 22px">100cm</label>
+                            <input type="number" id="txt5cm" name="txt5cm" class="form-control text-right" style="width: 80px" placeholder="0.0">
+                            <label class="error-link">ºC</label>
+                        </div>                        
+                    </div>
+                    <div class="item5 grid" style="margin-top: -20px">
+                        <fieldset>
+                            <legend>Max and Min Temperatures (ºC)</legend>
+                            <div class="grid-container">
+                                <div class="max-temp-grid">
+                                    <label class="label-title mb-2">maximum temp (09/18z) (ºC)</label>
+                                    <div class="input-group-sm form-inline mt-1">
+                                        <label for="txtMaxReading" >Reading</label>
+                                        <input type="number" id="txtMaxReading" name="txtMaxReading" class="form-control text-right" style="width: 80px" placeholder="0.0">
+                                        <label class="error-link">ºC</label>
+                                    </div>
+                                    <div class="input-group-sm form-inline mt-1">
+                                        <label for="txtMaxReset" style="margin-left: 17px">Reset</label>
+                                        <input type="number" id="txtMaxReset" name="txtMaxReset" class="form-control text-right" style="width: 80px" placeholder="0.0">
+                                        <label class="error-link">ºC</label>
+                                    </div>
+                                </div>
+                                <div class="min-temp-grid">
+                                    <label class="label-title mb-2">minimum temp (06/09z) (ºC)</label>
+                                    <div class="input-group-sm form-inline mt-1">
+                                        <label for="txtMinReading" >Reading</label>
+                                        <input type="number" id="txt5ctxtMinReadingm" name="txtMinReading" class="form-control text-right" style="width: 80px" placeholder="0.0">
+                                        <label class="error-link">ºC</label>
+                                    </div>
+                                    <div class="input-group-sm form-inline mt-1">
+                                        <label for="txtMinReset" style="margin-left: 17px">Reset</label>
+                                        <input type="number" id="txtMinReset" name="txtMinReset" class="form-control text-right" style="width: 80px" placeholder="0.0">
+                                        <label class="error-link">ºC</label>
+                                    </div>
+                                </div>
+                                <div class="grass-min-temp-grid">
+                                    <label class="label-title mb-2">grass min temp (09/18z) (ºC)</label>                                     
+                                    <div class="input-group-sm form-inline mt-1">
+                                        <label for="txtGrassMin" >Reading/Reset</label>
+                                        <input type="number" id="txtGrassMin" name="txtGrassMin" class="form-control text-right" style="width: 80px" placeholder="0.0">
+                                        <label class="error-link">ºC</label>
+                                    </div>
+                                </div>
+                                 
+                            </div>
+                        </fieldset>
+                    </div>
+
+                </div>
+               
+            </fieldset>
+        </div>
+    </section>
+    <section class="px-4 container-fluid mb-3">        
+        <div class="form-row">
+            <fieldset class="col-lg-9 align-self-start">
+                <legend>MESSAGE PARAMETERS</legend>
+                <div class="form-row px-2">
+                    <div class="col-md-5 form-inline input-group-sm mb-2">
+                        <label for="txtWind" style="margin-left: 50px;">Wind</label>
+                        <input type="text" id="txtWind" name="txtWind" class="form-control text-right" style="width:215px">
+                        <label class="error-link">KT</label>
+                    </div>
+                    <div class="col-md-4 form-inline input-group-sm mb-2">
+                        <input class="custom-checkbox mr-2" type="checkbox" id="chkVRBWind" name="chkVRBWind">        
+                        <label for="chkVRBWind">Include VRB Wind</label>                 
+                        <input type="text" id="txtVRBWind" name="txtVRBWind" class="form-control text-right" style="width:140px">
+                        <label class="error-link">KT</label>
+                    </div>
+                    <div class="col-md-3 form-inline input-group-sm mb-2">
+                        <input class="custom-checkbox mr-1" type="checkbox" id="chkWindGust" name="chkWindGust">   
+                        <label for="chkWindGust">Wind Gust</label>        
+                        <input type="text" id="txtWindGust" name="txtWindGust" class="form-control text-right" style="width:120px">
+                        <label class="error-link">KT</label>
+                    </div>
+
+                </div>
+                <div class="form-row px-2">
+                    <div class="col-md-5 form-inline input-group-sm mb-2">
+                        <label for="txtVis" style="margin-left: 31px">Visibility</label>
+                        <input type="text" id="txtVis" name="txtVis" class="form-control text-right" style="width:117px">
+                        <select class="custom-control custom-select" id="cbxmKm" name="cbxmKm" style="width:90px; margin-left: 10px;">
+                            <option value="M">M</option>
+                            <option value="KM">KM</option>
+                        </select>
+                        <label class="error-link">(m/km)</label>
+                    </div>
+                     
+                    <div class="col-md-4 form-inline input-group-sm mb-2">
+                        <label for="cbxWx1">Present Wx</label>                         
+                        <select class="custom-control custom-select" id="cbxWx1" name="cbxWx1" style="width:90px; margin-left: 10px;">
+                            <option value=""></option>
+                            <option value="TSRA">TSRA</option>
+                            <option value="RA">RA</option>
+                        </select>
+                        <select class="custom-control custom-select" id="cbxWx2" name="cbxWx2" style="width:90px; margin-left: 10px;">
+                            <option value=""></option>
+                            <option value="TSRA">TSRA</option>
+                            <option value="RA">RA</option>
+                        </select>
+                        <label class="error-link">(m/km)</label>
+                    </div>
+                     
+                    <div class="col-md-3 form-inline input-group-sm mb-2">
+                         
+                    </div>
+                </div>
+                <div class="form-row px-2">
+                    <div class="col-md-5 form-inline input-group-sm mb-2">
+                        <label for="txtDirVis">Direction Vis.</label>
+                        <input type="text" id="txtDirVis" name="txtDirVis" class="form-control text-right" style="width:100px">
+                        <label class="error-link">M</label>
+                        <select class="custom-control custom-select" id="cbxmKm" name="cbxmKm" style="width:90px; margin-left: 5px;">
+                            <option value="M">M</option>
+                            <option value="KM">KM</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 form-inline input-group-sm mb-2">                         
+                        <label for="chkRVR1">RVR 1</label>                 
+                        <input type="number" id="chkRVR1" name="chkRVR1" class="form-control text-right" style="width:120px">
+                        <label class="error-link">M</label>
+                        <select class="custom-control custom-select" id="cbxWx2" name="cbxWx2" style="width:90px; margin-left: 10px;">
+                            <option value=""></option>
+                            <option value="U">U</option>
+                            <option value="N">N</option>
+                            <option value="D">D</option>
+                        </select>
+                         
+                    </div>
+                    <div class="col-md-3 form-inline input-group-sm mb-2">
+                        
+                    </div>
+                </div>
+                <div class="form-row px-2">
+                    <div class="col-md-5 form-inline input-group-sm mb-3">                      
+                    </div>
+                    <div class="col-md-4 form-inline input-group-sm mb-3">                         
+                        <label for="chkRVR2">RVR 2</label>                 
+                        <input type="number" id="chkRVR2" name="chkRVR2" class="form-control text-right" style="width:117px">
+                        <label class="error-link">M</label>
+                        <select class="custom-control custom-select" id="cbxWx2" name="cbxWx2" style="width:90px; margin-left: 10px;">
+                            <option value=""></option>
+                            <option value="U">U</option>
+                            <option value="N">N</option>
+                            <option value="D">D</option>
+                        </select>
+                         
+                    </div>
+                    <div class="col-md-3 form-inline input-group-sm mb-3">                        
+                    </div>
+                </div>
+                <div class="form-row px-2">
+                    <div class="col-md-5 form-inline input-group-sm mb-2 mt-4">    
+                        <label for="cbxCloudAmt" style="margin-left: 43px">Cloud</label>
+                        <select class="custom-control custom-select" id="cbxCloudAmt" name="cbxCloudAmt" style="width:117px;">
+                            <option value=""></option>
+                            <option value="FEW">FEW</option>
+                            <option value="SCT">SCT</option>
+                            <option value="OVC">OVC</option>
+                            <option value="/VV">/VV</option>
+                        </select>
+                        <select class="custom-control custom-select" id="cbxCloudHgt" name="cbxCloudHgt" style="width:90px; margin-left: 10px;">
+                            <option value=""></option>
+                            <!--use PHP script to generate the items from 030 - 990-->
+                        </select>
+                        <label class="error-link">M</label>                  
+                    </div>
+                    <div class="col-md-4">  
+                        <div class="form-inline mb-1">
+                            <input type="checkbox" class="custom-checkbox ml-5" id="chkCloud" name="chkCloud">
+                            <label for="chkCloud" class="ml-2">Include Special Cloud Group</label>
+                        </div> 
+                        <div class="form-inline input-group-sm" id="grpSpecialCloud">
+                            <label for="cbxCloudAmt2">Cloud</label>
+                            <select class="custom-control custom-select" id="cbxCloudAmt2" name="cbxCloudAmt2" style="width:90px;">
+                                <option value=""></option>
+                                <option value="FEW">FEW</option>
+                                <option value="SCT">SCT</option>
+                                <option value="OVC">OVC</option>
+                                <option value="/VV">/VV</option>
+                            </select>
+                            <select class="custom-control custom-select" id="cbxCloudGenus" name="cbxCloudGenus" style="width:90px; margin-left: 10px;">
+                                <option value=""></option>
+                                <option value="CB">CB</option>
+                                <option value="TCU">TCU</option>
+                                
+                            </select>
+                            <select class="custom-control custom-select" id="cbxCloudHgt2" name="cbxCloudHgt2" style="width:90px; margin-left: 10px;">
+                                <option value=""></option>
+                                <!--Fill the rest with php script, just like above (cbxCloudHgt)-->
+                            </select>
+                            <label class="error-link">M</label>                            
+                        </div>                     
+                        
+                    </div>
+                    <div class="col-md-3 form-inline input-group-sm mb-2 mt-4">  
+                        <div class="form-inline input-group-sm">
+                            <label for="txtQNH" style="margin-left: 35px;">QNH</label>
+                            <label class="label-input-align-right" id="txtQNH" name="txtQNH" style="width: 100px;">0.0</label>
+                            <label class="error-link">hPa</label>
+                        </div>   
+                    </div>
+                </div>
+                <div class="form-row px-2">
+                    <div class="col-md-4 form-inline input-group-sm mb-2">    
+                        <label for="txtRemarks" style="margin-left:25px">Remarks</label>                     
+                        <textarea class="form-control" id="txtRemarks" name="txtRemarks" rows="3" cols="35"></textarea>                        
+                         
+                    </div>
+                    <div class="col-md-5 form-inline input-group-sm mb-2">    
+                        <label for="txtTrend" style="margin-left:12px">Trend Fcst</label>                     
+                        <textarea class="form-control" id="txtTrend" name="txtTrend" rows="3" cols="44"></textarea>                        
+                         
+                    </div>
+                    <div class="col-md-3 form-inline input-group-sm mb-2">
+                        <label for="txtDBRound">Temp/DP</label>
+                        <label class="label-input" id="txtDBRound" name="txtDBRound" style="width: 60px">00</label>
+                        <label for="txtDPRound" class="mr-1">/</label>
+                        <label class="label-input" id="txtDPRound" name="txtDPRound" style="width: 60px">00</label>
+                        <label class="error-link">ºC</label>
+                    </div>
+                </div>
+                <div class="form-row px-2">
+                    <div class="col-md-8 form-inline input-group-sm mb-2">
+                        <label for="txtPlainLang" style="margin-left:10px">Plain Lang.</label>
+                        <textarea class="form-control" id="txtPlainLang" name="txtPlainLang" rows="3" cols="88"></textarea>                        
+                    </div>
+                    <div class="col-md-2 mb-2">
+                        <button class="btn btn-standard btn-sm px-3" type="button" id="btnBrowse" title="Browse for Pre-configured Plain Language text">...</button>
+                    </div>
+                </div>
+            </fieldset>
+
+         </div>
+         <div class="form-row">
+            <div class="col-md-5 my-3">
+            </div>
+            <div class="col-md-2 my-3">
+                <button type="submit" class="btn btn-sm btn-success btn-block" id="btnUpdate" name="btnUpdate"><i class="icofont icofont-upload-alt"></i>Update</button>           
+            </div>
+            <div class="col-md-2 my-3">
+                <button type="button" class="btn btn-sm btn-standard btn-block" id="btnUpdate" name="btnRefresh"><i class="icofont icofont-refresh"></i>Refresh</button>           
+            </div>
+
+         </div>
+         
+         
+     </section>
+    </main>    
+                      
+    <!-- Modal displaying messages...-->
+    <div class="modal fade" id="msgBox" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document" style="font-size: 0.9em;">
+            <div class="modal-content">
+                <div class="modal-header bg-modal">
+                    <h6 class="modal-title text-white" style="font-weight: normal" id="modalLabel"><i class="icofont icofont-cloud"></i>Unity-MET &reg;
+                    </h6>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                      <div style="display:flex;">
+                        <div style="flex:1">
+                            <img id="msgBoxIcon" src="./assets/img/png/info.png" class="img-thumbnail">
+                        </div>
+                        <div style="flex:5">
+                            <span id="message">[Message]</span>
+                        </div>
+                      </div>                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-standard shadow-box btn-sm" style="width:160px;"
+                        data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+        
+    
+    <footer>
+        Designed and Developed for the Nigerian Meteorological Agency (NiMet)
+    </footer>
+    
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+    </script>
+
+    <script type="text/javascript" src="./assets/js/app.js"></script>
+    <script type="text/javascript" src="./assets/js/metar-speci.js"></script>
+    <script type="text/javascript">
+
+    $(document).ready(() => {
+        loadCloudHeights(document.getElementById("cbxCloudHgt"));
+        loadCloudHeights(document.getElementById("cbxCloudHgt2"));
+
+    });
+     
+    document.getElementById("btnUpdate").addEventListener("click", () => {
+
+        //Using jQuery...
+        $('#message').text("This is where you set the message box message before displaying it. This is fine.");        
+        $('#msgBoxIcon').attr('src', './assets/img/png/warning.png');
+        
+        //Using Javascript...
+        // document.getElementById("message").innerText = "Any text you wish to display";
+        // document.getElementById("msgBoxIcon").setAttribute("src", "./assets/img/png/success.png");
+        
+        //Show the actual modal box...
+        $('#msgBox').modal("show");
+
+    });
+
+
+    </script>
+</body>
+</html>
